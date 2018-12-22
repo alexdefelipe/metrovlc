@@ -1,0 +1,36 @@
+<mat-toolbar color="primary"> Iniciar sesión
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+
+<form novalidate #formularioLogin="ngForm" (ngSubmit)="onSubmit()">
+  <p>{{ usuario | json }}</p>
+  <mat-dialog-content>
+    <p>
+      <mat-form-field>
+        <input matInput class placeholder="Nombre de Usuario" type="text" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel" required>
+        <mat-hint>
+          <span [hidden]="nombre.pristine">
+            <span [hidden]="!nombre.errors?.required">El nombre es obligatorio</span>
+          </span>
+        </mat-hint>
+      </mat-form-field>
+<br/>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" [(ngModel)]="usuario.password" name="password" #password="ngModel" required>
+        <mat-hint>
+          <span [hidden]="password.pristine">
+            <span [hidden]="!password.errors?.required">La contraseña es obligatoria</span>
+          </span>
+        </mat-hint>
+      </mat-form-field>
+<br/>
+      <mat-checkbox [(ngModel)]="usuario.nocerrar" name="nocerrar">No cerrar sesión</mat-checkbox>
+    </p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button class="btn_login" type="submit" [disabled]="formularioLogin.form.invalid">Iniciar sesión</button>
+  </mat-dialog-actions>
+</form>

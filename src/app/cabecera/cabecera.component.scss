@@ -1,0 +1,47 @@
+#cabecera {
+  background-color: #bcbcbc;
+  // height: fit-content;
+  position: relative; // Para que aparezca el span en el bottom
+}
+
+#cabecera span {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute; // Para que aparezca el span en el bottom
+  bottom: 0; // Para que aparezca el span en el bottom
+  margin-left: 5px;
+  margin-bottom: 2px;
+}
+
+#cabecera img {
+  display: block;
+  width: 100%;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  color: white;
+  padding: 10px;
+  border-radius: 10%;
+  font-size: 16px;
+  transition: 0.5s;
+}
+
+button:hover {
+  background-color: #ffffff80;
+  cursor: pointer;
+}
+
+.btn_inicio_sesion {
+  margin-left: auto;
+}
+
+.btn_menu {
+  margin-left: 10px;
+}
+
+.btn_menu_primero {
+  margin-left: 100px;
+}

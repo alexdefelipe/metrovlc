@@ -1,0 +1,45 @@
+button {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  background-color: #ccc8c869;
+  border: 0;
+  color: white;
+  padding: 10px;
+  border-radius: 10%;
+  font-size: 16px;
+  transition: 0.5s;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.btn_login {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+  background-color: #d30006;
+  border: 0;
+  color: white;
+  padding: 10px;
+  border-radius: 10%;
+  font-size: 16px;
+}
+
+form {
+  padding-right: 40px;
+  padding-left: 40px;
+}
+
+input {
+  background-color:white;
+}
+
+mat-form-field {
+  width: 100%;
+}

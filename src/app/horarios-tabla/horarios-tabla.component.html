@@ -1,0 +1,27 @@
+<div *ngIf="showMePartially" class="container" fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex *ngFor="let estacion of vEstaciones">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>{{estacion.nombre | uppercase}}</h3>
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{estacion.direccion}}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><span>Lineas:</span> {{estacion.lineas}}
+        </p>
+      </mat-card-content>
+      <mat-card-content>
+        <p>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>
+          <
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
