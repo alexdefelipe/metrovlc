@@ -27,6 +27,12 @@ export class HorariosTablaComponent implements OnInit {
       nombre: "Alameda",
       direccion: "Paseo de la ciudadela",
       lineas: [3, 5, 7, 9]
+    },
+    {
+      id: 4,
+      nombre: "Colón",
+      direccion: "C/ Colón",
+      lineas: [3, 5, 7, 9]
     }
   ];
 

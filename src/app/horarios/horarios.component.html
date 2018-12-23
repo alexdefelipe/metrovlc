@@ -1,24 +1,19 @@
-<div class="container">
-  <div class="contenedor_busqueda" fxLayout="column" fxLayout.xs="column">
-    <h2> Calcula un recorrido entre dos estaciones </h2>
-    <div fxFlex="50%" fxLayout="row" class="buscar">
-      <input type="text" placeholder="Estación de origen" disabled>
-      <button (click)="toggleChild()">Seleccionar</button>
-    </div>
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+  <div class="item item-1" fxFlex="30%">
+    <div class="contenedor_busqueda" fxLayout="column" fxLayout.xs="column">
+      <h2> Calcula un recorrido entre dos estaciones </h2>
+      <div class="buscar">
+        <input type="text" placeholder="Estación de origen" disabled>
+        <button (click)="toggleChild()">Seleccionar</button>
+      </div>
 
-    <div fxFlex="50%" fxLayout="row" class="buscar">
-      <input type="text" placeholder="Estación de destino" disabled>
-      <button (click)="toggleChild()">Seleccionar</button>
+      <div class="buscar">
+        <input type="text" placeholder="Estación de destino" disabled>
+        <button (click)="toggleChild()">Seleccionar</button>
+      </div>
     </div>
   </div>
-
-  <!-- Alinear a la derecha -->
-  <!-- <div *ngIf="showVar" style="margin-left:auto; margin-right:0;">
-    <app-horarios-tabla>
-    </app-horarios-tabla>
-  </div> -->
-
-  <div>
+  <div class="item item-2" fxFlex="75%">
     <app-horarios-tabla [showMePartially]="showVar">
     </app-horarios-tabla>
   </div>

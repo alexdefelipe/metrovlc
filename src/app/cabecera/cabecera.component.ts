@@ -16,7 +16,7 @@ export class CabeceraComponent implements OnInit {
   }
 
   abrirFormularioLogin() {
-    this.dialogo.open(LoginComponent, { width: '500px', height: '450px', panelClass: "dialogoPersonalizado"});
+    this.dialogo.open(LoginComponent, {width: '500px', height: '450px',panelClass: "myapp-no-padding-dialog"});
 
   }
 
