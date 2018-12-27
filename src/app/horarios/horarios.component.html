@@ -1,20 +1,31 @@
-<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+<div class="container" fxLayout fxLayout.xs="column"  fxLayoutGap="10px" fxLayoutGap.xs="0">
   <div class="item item-1" fxFlex="30%">
     <div class="contenedor_busqueda" fxLayout="column" fxLayout.xs="column">
       <h2> Calcula un recorrido entre dos estaciones </h2>
       <div class="buscar">
-        <input type="text" placeholder="Estación de origen" disabled>
-        <button (click)="toggleChild()">Seleccionar</button>
+        <input type="text" placeholder="Estación de origen" [(ngModel)]="estacion_origen" disabled>
+        <button (click)="abrirListadoEstaciones(true)">Seleccionar</button>
       </div>
 
       <div class="buscar">
-        <input type="text" placeholder="Estación de destino" disabled>
-        <button (click)="toggleChild()">Seleccionar</button>
+        <input type="text" placeholder="Estación de destino" [(ngModel)]="estacion_destino" disabled>
+        <button (click)="abrirListadoEstaciones(false)">Seleccionar</button>
+      </div>
+
+      <div class="buscar">
+        <input id="date" style="width: 162.22px;" type="date">
+        <button id="btn_date" (click)="abrirListadoHorarios()">¡Enviar!</button>
       </div>
     </div>
   </div>
-  <div class="item item-2" fxFlex="75%">
-    <app-horarios-tabla [showMePartially]="showVar">
-    </app-horarios-tabla>
+
+  <div class="item item-2" fxFlex="75%" *ngIf="mostrar_estaciones">
+    <app-listado-estaciones [mostrar_estaciones]="mostrar_estaciones" [es_origen]="es_origen">
+    </app-listado-estaciones>
+  </div>
+
+  <div class="item item-3" fxFlex="75%" *ngIf="mostrar_horarios">
+    <app-listado-horarios [mostrar_horarios]="mostrar_horarios">
+    </app-listado-horarios>
   </div>
 </div>

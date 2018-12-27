@@ -1,5 +1,5 @@
 <div class="scroll-container">
-  <mat-grid-list *ngIf="showMePartially" cols="3">
+  <mat-grid-list *ngIf="mostrar_estaciones" cols="3">
     <mat-grid-tile *ngFor="let estacion of vEstaciones" maxHeight="380px">
       <mat-card style="width:50%">
         <mat-card-header>
@@ -13,7 +13,7 @@
         <mat-card-content>
           <p><span>Líneas</span></p>
           <ng-container *ngFor="let img of estacion.lineas">
-              <img src="/../../assets/images/lineas/linea{{img}}.gif" alt="Linea {{img}}" style="margin-right:5px">
+            <img src="/../../assets/images/lineas/linea{{img}}.gif" alt="Linea {{img}}" style="margin-right:5px">
           </ng-container>
         </mat-card-content>
         <mat-card-content>
@@ -21,5 +21,9 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button style="width:100%">
-            < </button> </mat-card-actions> </mat-card> </mat-grid-tile> </mat-grid-list> </div>
+          <button mat-button style="width:100%" (click)="seleccionar(es_origen, estacion.nombre)"><b>&lt;</b></button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
