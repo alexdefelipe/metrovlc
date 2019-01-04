@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, empty, of, Subject } from 'rxjs';
+import { Observable, empty, of, Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 // Para utilizar HttpClient
@@ -15,7 +15,7 @@ import { Usuario } from '../compartido/usuario';
 })
 export class UsuarioService {
   // usuario = { nombre: '', password: '', nocerrar: false };
-  private usuario = new Subject<any>();
+  private usuario = new BehaviorSubject<Usuario>({nombre:"", password:"", est_favoritas:[-1]});
 
 
   httpOptions = {
@@ -25,7 +25,7 @@ export class UsuarioService {
   };
 
   constructor(private http: HttpClient) {
-    this.usuario.next({ nombre: '', password: '' });
+    this.usuario.next({ nombre: '', password: '', est_favoritas:[-1]});
   }
 
   registrarUsuario(usuario) {
@@ -48,7 +48,7 @@ export class UsuarioService {
           } else {
             sessionStorage.setItem("usuario", JSON.stringify(usuario_logando));
           }
-          this.usuario.next({ nombre: usuario_logando.nombre, password: usuario_logando.password })
+          this.usuario.next({ nombre: usuario_logando.nombre, password: usuario_logando.password,est_favoritas: usuario_logando.est_favoritas });
           dialogRef.close();
           return true;
         } else {
@@ -77,7 +77,7 @@ export class UsuarioService {
   }
 
   cerrarSesion(): Observable<any> {
-    this.usuario.next({ nombre: '', password: '' });
+    this.usuario.next({nombre:"", password:"", est_favoritas:[-1]});
     localStorage.removeItem("usuario");
     sessionStorage.removeItem("usuario");
     return this.usuario.asObservable();
