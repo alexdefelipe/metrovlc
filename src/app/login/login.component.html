@@ -3,19 +3,19 @@
   <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 
-<form novalidate #formularioLogin="ngForm" (ngSubmit)="onSubmit()">
+<form novalidate #formularioLogin="ngForm" (ngSubmit)="iniciarSesion()">
   <p>{{ usuario | json }}</p>
   <mat-dialog-content>
     <p>
       <mat-form-field>
-        <input matInput class placeholder="Nombre de Usuario" type="text" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel" required>
+        <input matInput class placeholder="Nombre de Usuario" type="text" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel" autofocus="autofocus" required>
         <mat-hint>
           <span [hidden]="nombre.pristine">
             <span [hidden]="!nombre.errors?.required">El nombre es obligatorio</span>
           </span>
         </mat-hint>
       </mat-form-field>
-<br/>
+      <br />
       <mat-form-field>
         <input matInput placeholder="Password" type="password" [(ngModel)]="usuario.password" name="password" #password="ngModel" required>
         <mat-hint>
@@ -24,13 +24,14 @@
           </span>
         </mat-hint>
       </mat-form-field>
-<br/>
+      <br />
       <mat-checkbox [(ngModel)]="usuario.nocerrar" name="nocerrar">No cerrar sesión</mat-checkbox>
     </p>
   </mat-dialog-content>
-
+  <p><a href="/registrar">¿Todavía no te has registrado?</a></p>
   <mat-dialog-actions>
     <span class="flex-spacer"></span>
-    <button class="btn_login" type="submit" [disabled]="formularioLogin.form.invalid">Iniciar sesión</button>
+    <button class="btn_login" type="submit" >Iniciar sesión</button>
+    <button type='button' (click)="cerrar()" routerLink="/registrar">¿Todavía no te has registrado?</button>
   </mat-dialog-actions>
 </form>

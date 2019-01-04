@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ObtenerEstacionService } from '../services/obtener-estacion.service';
+import { EstacionFavoritaService } from '../services/estacion-favorita.service';
+import { EstacionService } from '../services/estacion.service';
 
 @Component({
   selector: 'app-horarios',
@@ -11,26 +12,39 @@ export class HorariosComponent implements OnInit {
   // interactual con el DOM. En el HTML se mandan al otro componente.
   mostrar_estaciones: boolean = false;
   mostrar_horarios: boolean = false;
+  mostrar_estaciones_favoritas: boolean = false;
   es_origen: boolean = true;
   estacion_origen: string = "";
   estacion_destino: string = "";
-  constructor(private estacionService: ObtenerEstacionService) { }
+  fecha: string = "";
+
+  constructor(private estacionService: EstacionService, estacionFavoritaService: EstacionFavoritaService) {
+    estacionFavoritaService.cambiarVisibilidad().subscribe(visibilidad => {this.mostrar_estaciones_favoritas = visibilidad})
+    estacionService.getEstacionOrigen().subscribe(data => this.estacion_origen = data);
+    estacionService.getEstacionDestino().subscribe(data => this.estacion_destino = data);
+  }
 
   ngOnInit() {
-    // var today = new Date();
-    // var dd = today.getDate();
-    // var mm = today.getMonth() + 1; //January is 0!
-    // var yyyy = today.getFullYear();
-    // if (dd < 10) {
-    //   dd = '0' + dd.toString();
-    // }
-    // if (mm < 10) {
-    //   mm = '0' + mm
-    // }
-    //
-    // today = yyyy + '-' + mm + '-' + dd;
-    // document.getElementById("date").setAttribute("value", today);
-    // document.getElementById("date").setAttribute("min", today);
+    var today = new Date();
+    var today2;
+    var dd = today.getDate();
+    var dd2;
+    var mm = today.getMonth() + 1; //January is 0!
+    var mm2;
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd2 = '0' + dd.toString();
+    } else {
+      dd2 = dd.toString()
+    }
+    if (mm < 10) {
+      mm2 = '0' + mm.toString()
+    } else {
+      mm2 = mm.toString();
+    }
+
+    today2 = yyyy + '-' + mm2 + '-' + dd2;
+    this.fecha = today2;
   }
 
   abrirListadoEstaciones(es_origen) {
@@ -40,15 +54,6 @@ export class HorariosComponent implements OnInit {
     }
 
     this.es_origen = es_origen;
-    if (es_origen) {
-      if (this.estacionService.resuelto) {
-        this.estacionService.getEstacionOrigen().then(estacion => this.estacion_origen = estacion);
-      }
-    } else {
-      if (this.estacionService.resuelto) {
-        this.estacionService.getEstacionDestino().then(estacion => this.estacion_destino = estacion);
-      }
-    }
   }
 
   abrirListadoHorarios() {

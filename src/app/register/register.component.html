@@ -1,0 +1,21 @@
+<div class="container">
+  <mat-form-field>
+    <input matInput placeholder="Nombre de usuario" [(ngModel)]="usuario.nombre">
+  </mat-form-field>
+  <br />
+
+  <mat-form-field>
+    <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.password">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+  <br />
+
+  <mat-form-field>
+    <input matInput placeholder="Repetir contraseña" [type]="hide ? 'password' : 'text'" [(ngModel)]="rep_pass">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+  <br />
+
+  <button mat-button color="primary" (click)="registrarUsuario()">Registrarme</button>
+
+</div>

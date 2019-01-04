@@ -13,7 +13,7 @@
       </div>
 
       <div class="buscar">
-        <input id="date" style="width: 162.22px;" type="date">
+        <input id="date" [(ngModel)]="fecha" style="width: 162.22px;" type="date">
         <button id="btn_date" (click)="abrirListadoHorarios()">¡Enviar!</button>
       </div>
     </div>
@@ -25,7 +25,12 @@
   </div>
 
   <div class="item item-3" fxFlex="75%" *ngIf="mostrar_horarios">
-    <app-listado-horarios [mostrar_horarios]="mostrar_horarios">
+    <app-listado-horarios [mostrar_horarios]="mostrar_horarios" [estacion_origen]="estacion_origen" [estacion_destino]="estacion_destino" [fecha] = "fecha">
     </app-listado-horarios>
   </div>
+
+  <!-- <div class="item item-4" fxFlex="75%" *ngIf="estaciones_favoritas">
+    <app-estaciones-favoritas>
+    </app-estaciones-favoritas>
+  </div> -->
 </div>

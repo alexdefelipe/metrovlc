@@ -40,3 +40,24 @@ mat-grid-tile {
   background: white;
   border-radius: 10px;
 }
+
+.fav {
+  // background-color: #ffffff40;
+  background-color: #ffffff47;
+  // color: white;
+  border: 0;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: 0.5s;
+  height: 50%;
+  padding: 10px;
+}
+
+.fav button:hover {
+  background-color: #ffffff80;
+  cursor: pointer;
+}
+
+.fav button:focus {
+  outline: 0;
+}

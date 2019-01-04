@@ -20,6 +20,10 @@
   width: 100%;
 }
 
+.container {
+  display: flex;
+}
+
 button {
   background-color: transparent;
   border: 0;
@@ -35,12 +39,22 @@ button:hover {
   cursor: pointer;
 }
 
+button:focus {
+  outline: 0;
+}
+
+.btn_izq {
+
+}
+
 .btn_inicio_sesion {
   margin-left: auto;
+  margin-right: 10px;
 }
 
 .btn_menu {
-  margin-left: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .btn_menu_primero {
