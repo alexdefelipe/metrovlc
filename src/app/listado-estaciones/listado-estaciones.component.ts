@@ -48,7 +48,7 @@ export class ListadoEstacionesComponent implements OnInit {
   favorita(estacion) {
     estacion.fav = !estacion.fav;
     if (estacion.fav) {
-
+      this.estacionFavoritaService.agregarEstacionFavorita(estacion);
     }
   }
 
