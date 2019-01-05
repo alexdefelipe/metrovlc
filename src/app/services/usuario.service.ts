@@ -42,13 +42,14 @@ export class UsuarioService {
     this.buscarUsuario(usuario_logando.nombre).subscribe(usuario_encontrado => {
       if (usuario_encontrado.length == 1) {
         if (usuario_encontrado[0].password === usuario_logando.password) {
+          var usuario_a_guardar = {nombre: usuario_logando.nombre, password: usuario_logando.password, est_favoritas: usuario_logando.est_favoritas};
           if (usuario_logando.nocerrar) {
-            localStorage.setItem("usuario", JSON.stringify(usuario_logando));
+            localStorage.setItem("usuario", JSON.stringify(usuario_a_guardar));
 
           } else {
-            sessionStorage.setItem("usuario", JSON.stringify(usuario_logando));
+            sessionStorage.setItem("usuario", JSON.stringify(usuario_a_guardar));
           }
-          this.usuario.next({ nombre: usuario_logando.nombre, password: usuario_logando.password,est_favoritas: usuario_logando.est_favoritas });
+          this.usuario.next(usuario_a_guardar);
           dialogRef.close();
           return true;
         } else {
@@ -65,10 +66,12 @@ export class UsuarioService {
 
   checkLogin(): Observable<any> {
     // return this.usuario.asObservable();
-    let usu = JSON.parse(localStorage.getItem("usuario"))
+    console.log(this.usuario.getValue());
+    let usu: Usuario = JSON.parse(localStorage.getItem("usuario"))
     if (usu) {
-      this.usuario = usu;
+      this.usuario.next(usu);
     }
+    console.log(this.usuario.getValue());
     return this.usuario.asObservable();
   }
 

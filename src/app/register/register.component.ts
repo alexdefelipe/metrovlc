@@ -16,8 +16,8 @@ import { UsuarioService } from "../services/usuario.service"
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  usuario = {nombre:"", password:"", est_favoritas:[]};
-  usuariorest = {nombre:"", password:""};
+  usuario = {nombre:"", password:"", no_cerrar:false, est_favoritas:[-1]};
+  // usuariorest = {nombre:"", password:""};
   rep_pass: string;
 
   hide = true;
@@ -27,13 +27,10 @@ export class RegisterComponent implements OnInit {
   }
 
   registrarUsuario() {
-    console.log(this.usuario["nombre"])
-    console.log(this.usuario["password"])
-    console.log(this.rep_pass)
+    console.log(this.usuario);
     if (this.usuario["password"] === this.rep_pass) {
-      console.log("Las contraseñas coinciden")
-      this.usuariorest = this.usuario;
-      this.usuarioService.registrarUsuario(this.usuariorest);
+      console.log("Las contraseñas coinciden");
+      this.usuarioService.registrarUsuario(this.usuario);
     } else {
       console.log("no coinciden")
     }

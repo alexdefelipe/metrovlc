@@ -8,7 +8,7 @@ import { UsuarioService } from "../services/usuario.service"
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  usuario = { nombre: '', password: '', nocerrar: false };
+  usuario = {nombre:"", password:"", est_favoritas:[-1]};
 
   constructor(private dialogRef: MatDialogRef<LoginComponent>, private usuarioService: UsuarioService) {
   }
