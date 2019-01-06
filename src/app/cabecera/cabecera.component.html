@@ -7,7 +7,7 @@
   <button class="btn_menu_primero" routerLink="/horarios" routerLinkActive="activo"><span class="fa fa-home fa-lg"></span>Horarios</button>
   <button class="btn_menu" routerLinkActive="activo">Acerca de </button>
   <!-- <div class="btn_inicio_sesion"> -->
-    <p> {{usuario | json}} </p>
+    <!-- <p> {{usuario | json}} </p> -->
   <button class="btn_inicio_sesion" (click)="abrirFormularioLogin()" *ngIf="usuario == '' || usuario.nombre == ''; else elseBlock">
     <span class="fa fa-sign-in fa-lg"></span>Iniciar sesión
   </button>
