@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { UsuarioService } from "../services/usuario.service"
+import { Usuario } from '../compartido/usuario';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,13 @@ import { UsuarioService } from "../services/usuario.service"
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  usuario = {nombre:"", password:"", est_favoritas:[-1]};
+  usuario: Usuario;
 
   constructor(private dialogRef: MatDialogRef<LoginComponent>, private usuarioService: UsuarioService) {
+    this.usuarioService.checkLogin().subscribe(usuario => {
+      this.usuario = usuario;
+      console.log(this.usuario);
+    });
   }
 
   ngOnInit() {

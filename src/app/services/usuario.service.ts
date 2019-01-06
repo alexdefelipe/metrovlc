@@ -14,8 +14,7 @@ import { Usuario } from '../compartido/usuario';
   providedIn: 'root'
 })
 export class UsuarioService {
-  // usuario = { nombre: '', password: '', nocerrar: false };
-  private usuario = new BehaviorSubject<Usuario>({nombre:"", password:"", est_favoritas:[-1]});
+  private usuario: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>({ nombre: "", password: "", est_favoritas: [-1], id: -1 });
 
 
   httpOptions = {
@@ -25,11 +24,11 @@ export class UsuarioService {
   };
 
   constructor(private http: HttpClient) {
-    this.usuario.next({ nombre: '', password: '', est_favoritas:[-1]});
+    this.usuario.next({ nombre: '', password: '', est_favoritas: [-1], id: -1 });
   }
 
   registrarUsuario(usuario) {
-    this.buscarUsuario(usuario.nombre).subscribe(usuario_encontrado => {
+    this.buscarUsuarioEnBD(usuario.nombre).subscribe(usuario_encontrado => {
       if (usuario_encontrado.length == 0) {
         this.http.post(baseURL + 'usuarios', usuario, this.httpOptions).subscribe(resultado => console.log("Usuario registrado"));
       } else {
@@ -39,10 +38,16 @@ export class UsuarioService {
   }
 
   login(usuario_logando, dialogRef): boolean {
-    this.buscarUsuario(usuario_logando.nombre).subscribe(usuario_encontrado => {
+    this.buscarUsuarioEnBD(usuario_logando.nombre).subscribe(usuario_encontrado => {
       if (usuario_encontrado.length == 1) {
-        if (usuario_encontrado[0].password === usuario_logando.password) {
-          var usuario_a_guardar = {nombre: usuario_logando.nombre, password: usuario_logando.password, est_favoritas: usuario_logando.est_favoritas};
+        var user = usuario_encontrado[0];
+        if (user.password === usuario_logando.password) {
+          var usuario_a_guardar = {
+            nombre: user.nombre,
+            password: user.password,
+            est_favoritas: user.est_favoritas,
+            id: user.id
+          };
           if (usuario_logando.nocerrar) {
             localStorage.setItem("usuario", JSON.stringify(usuario_a_guardar));
 
@@ -65,22 +70,19 @@ export class UsuarioService {
   }
 
   checkLogin(): Observable<any> {
-    // return this.usuario.asObservable();
-    console.log(this.usuario.getValue());
     let usu: Usuario = JSON.parse(localStorage.getItem("usuario"))
     if (usu) {
       this.usuario.next(usu);
     }
-    console.log(this.usuario.getValue());
     return this.usuario.asObservable();
   }
 
-  buscarUsuario(nombre): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(baseURL + 'usuarios?nombre=' + nombre);
+  buscarUsuarioEnBD(nombre): Observable<any> {
+    return this.http.get<any>(baseURL + 'usuarios?nombre=' + nombre);
   }
 
   cerrarSesion(): Observable<any> {
-    this.usuario.next({nombre:"", password:"", est_favoritas:[-1]});
+    this.usuario.next({ nombre: "", password: "", est_favoritas: [-1], id: -1 });
     localStorage.removeItem("usuario");
     sessionStorage.removeItem("usuario");
     return this.usuario.asObservable();

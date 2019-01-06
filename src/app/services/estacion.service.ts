@@ -3,6 +3,7 @@ import { Observable, of, Subject } from 'rxjs';
 import { ListadoEstacionesComponent } from '../listado-estaciones/listado-estaciones.component';
 
 import { Estacion } from '../compartido/estacion';
+import { Usuario } from '../compartido/usuario';
 import { baseURL } from '../compartido/baseurl';
 
 // Para utilizar HttpClient
@@ -49,5 +50,4 @@ export class EstacionService {
   getIdEstacion(nombre_estacion: string): Observable<string> {
     return this.http.get<string>("https://metrovlcschedule.herokuapp.com/api/v1/stations/converter/" + nombre_estacion)
   }
-
 }

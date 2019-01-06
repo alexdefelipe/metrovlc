@@ -3,6 +3,8 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { UsuarioService } from "../services/usuario.service"
 import { EstacionFavoritaService } from '../services/estacion-favorita.service';
+import { Usuario } from "../compartido/usuario"
+
 
 
 @Component({
@@ -11,10 +13,8 @@ import { EstacionFavoritaService } from '../services/estacion-favorita.service';
   styleUrls: ['./cabecera.component.scss']
 })
 export class CabeceraComponent implements OnInit {
-  usuario = { nombre: '', password: '' };
-
+  usuario: Usuario;
   constructor(public dialogo: MatDialog, private usuarioService: UsuarioService, private estacionFavoritaService: EstacionFavoritaService) {
-    // this.usuarioService.checkLogin().subscribe(resultado => this.usuario = resultado);
     this.usuarioService.checkLogin().subscribe(usuario => {
       this.usuario = usuario;
     })

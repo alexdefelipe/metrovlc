@@ -3,5 +3,6 @@ import { Estacion } from '../compartido/estacion';
 export class Usuario {
   nombre: string;
   password: string;
-  est_favoritas: [number]
+  est_favoritas: [number];
+  id: number;
 }
