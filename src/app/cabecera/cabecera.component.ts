@@ -36,7 +36,7 @@ export class CabeceraComponent implements OnInit {
   }
 
   estacionesFavoritas() {
-    this.estacionFavoritaService.visible = !this.estacionFavoritaService.visible
+    this.estacionFavoritaService.cambiarVisibilidad();
   }
 
 }

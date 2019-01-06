@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, HostListener, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Input  } from '@angular/core';
 
 import { Estacion } from '../compartido/estacion';
 import { HorariosComponent } from '../horarios/horarios.component';
@@ -21,8 +20,6 @@ export class ListadoEstacionesComponent implements OnInit {
   @Input() es_origen: boolean;
 
   estaciones: Estacion[];
-  // subscription: Subscription;
-  // usuario = { nombre: '', password: '' };
   usuario: Usuario = { nombre: '', password: '', est_favoritas: [-1], id: -1 };
 
   constructor(private horario: HorariosComponent, private usuarioService: UsuarioService,

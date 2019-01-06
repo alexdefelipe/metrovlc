@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Estacion } from '../compartido/estacion';
 import { Usuario } from '../compartido/usuario';
 import { UsuarioService } from "../services/usuario.service"
@@ -12,7 +12,7 @@ import { EstacionService } from '../services/estacion.service';
   providedIn: 'root'
 })
 export class EstacionFavoritaService {
-  visible = false
+  visible = new BehaviorSubject(false);
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -21,8 +21,12 @@ export class EstacionFavoritaService {
 
   constructor(private usuarioService: UsuarioService, private http: HttpClient, private estacionService: EstacionService) { }
 
-  cambiarVisibilidad(): Observable<any> {
-    return of(this.visible)
+  cambiarVisibilidad() {
+    this.visible.next(!this.visible.getValue());
+  }
+
+  obtenerVisibilidad(): Observable<any> {
+    return this.visible.asObservable();
   }
 
   agregarEstacionFavorita(n_usuario: string, n_estacion: number) {

@@ -18,8 +18,13 @@ export class HorariosComponent implements OnInit {
   estacion_destino: string = "";
   fecha: string = "";
 
-  constructor(private estacionService: EstacionService, estacionFavoritaService: EstacionFavoritaService) {
-    estacionFavoritaService.cambiarVisibilidad().subscribe(visibilidad => {this.mostrar_estaciones_favoritas = visibilidad})
+  constructor(private estacionService: EstacionService, private estacionFavoritaService: EstacionFavoritaService) {
+    estacionFavoritaService.obtenerVisibilidad().subscribe(visibilidad => {
+      this.mostrar_estaciones_favoritas = visibilidad;
+      this.mostrar_horarios = false;
+      this.mostrar_estaciones = false;
+      console.log("mostrar: " + this.mostrar_estaciones_favoritas);
+    })
     estacionService.getEstacionOrigen().subscribe(data => this.estacion_origen = data);
     estacionService.getEstacionDestino().subscribe(data => this.estacion_destino = data);
   }
@@ -48,6 +53,9 @@ export class HorariosComponent implements OnInit {
   }
 
   abrirListadoEstaciones(es_origen) {
+    if (this.mostrar_estaciones_favoritas == true) {
+      this.estacionFavoritaService.cambiarVisibilidad();
+    }
     this.mostrar_estaciones = true;
     if (this.mostrar_estaciones) {
       this.mostrar_horarios = false;
@@ -57,6 +65,9 @@ export class HorariosComponent implements OnInit {
   }
 
   abrirListadoHorarios() {
+    if (this.mostrar_estaciones_favoritas == true) {
+      this.estacionFavoritaService.cambiarVisibilidad();
+    }
     this.mostrar_horarios = true;
     if (this.mostrar_horarios) {
       this.mostrar_estaciones = false;
