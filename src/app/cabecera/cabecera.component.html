@@ -16,6 +16,7 @@
     <p class="btn_inicio_sesion">¡Hola, {{usuario.nombre}}!</p>
     <button routerLink="/mi-cuenta"><span class="fa fa-sign-in fa-lg"></span>Mi cuenta</button>
     <button (click)="estacionesFavoritas()"><span class="fa fa-sign-in fa-lg"></span>Estaciones favoritas</button>
+    <button routerLink="/contacto" (click)="cerrarSesion()"><span class="fa fa-sign-in fa-lg"></span>Contacto</button>
     <button (click)="cerrarSesion()"><span class="fa fa-sign-in fa-lg"></span>Cerrar sesión</button>
   </ng-template>
 </mat-toolbar>

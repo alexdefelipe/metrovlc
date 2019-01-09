@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Mis componentes
 import { CabeceraComponent } from './cabecera/cabecera.component';
@@ -15,6 +16,8 @@ import { RegisterComponent } from './register/register.component';
 import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
 import { HorariosComponent } from './horarios/horarios.component';
 import { ListadoEstacionesComponent } from './listado-estaciones/listado-estaciones.component';
+import { EstacionesFavoritasComponent } from './estaciones-favoritas/estaciones-favoritas.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 // Mis servicios
 import { UsuarioService } from './services/usuario.service';
@@ -35,7 +38,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { EstacionesFavoritasComponent } from './estaciones-favoritas/estaciones-favoritas.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { EstacionesFavoritasComponent } from './estaciones-favoritas/estaciones-
     ListadoHorariosComponent,
     RegisterComponent,
     MiCuentaComponent,
-    EstacionesFavoritasComponent
+    EstacionesFavoritasComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,9 @@ import { EstacionesFavoritasComponent } from './estaciones-favoritas/estaciones-
     MatButtonModule,
     HttpClientModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule
   ],
   providers: [{provide: 'BaseURL', useValue: baseURL}, EstacionFavoritaService, UsuarioService, EstacionService],
   entryComponents: [LoginComponent], // Abrir un componente desde otro

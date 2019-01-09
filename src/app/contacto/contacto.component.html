@@ -1,0 +1,24 @@
+<div class="container" class="form-size" fxFlex="30%">
+
+  <h3>Pregúntanos lo que quieras</h3>
+  <p>{{ consultaForm.value | json }} {{ consultaForm.status | json }}</p>
+
+  <form novalidate [formGroup]="consultaForm" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-form-field class="half-width">
+        <input matInput formControlName="nombre" placeholder="Nombre" type="text" required>
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <input matInput formControlName="correo" placeholder="Email" type="email" required>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field class="full-width">
+        <textarea matInput formControlName="mensaje" placeholder="Tu Comentario" rows=12></textarea>
+      </mat-form-field>
+    </p>
+    <button type="submit">Submit</button>
+  </form>
+</div>
