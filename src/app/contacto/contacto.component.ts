@@ -13,7 +13,7 @@ export class ContactoComponent implements OnInit {
 
   erroresForm = {
     'nombre': '',
-    'email': ''
+    'email': '',
     'mensaje': '',
   };
 
