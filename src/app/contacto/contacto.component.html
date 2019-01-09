@@ -7,18 +7,30 @@
     <p>
       <mat-form-field class="half-width">
         <input matInput formControlName="nombre" placeholder="Nombre" type="text" required>
+        <span [hidden]="!(consultaForm.get('nombre').hasError('required') && consultaForm.get('nombre').touched)">
+          El nombre es obligatorio
+        </span>
       </mat-form-field>
 
       <mat-form-field class="half-width">
-        <input matInput formControlName="correo" placeholder="Email" type="email" required>
+        <input matInput formControlName="correo" placeholder="Email" type="email" email required>
+        <span [hidden]="!(consultaForm.get('correo').hasError('required') && consultaForm.get('correo').touched)">
+          El correo es obligatorio
+        </span>
+        <span [hidden]="!(consultaForm.get('correo').hasError('email') && consultaForm.get('correo').touched)">
+          No es una dirección de correo
+        </span>
       </mat-form-field>
     </p>
 
     <p>
       <mat-form-field class="full-width">
         <textarea matInput formControlName="mensaje" placeholder="Tu Comentario" rows=12></textarea>
+        <span [hidden]="!(consultaForm.get('mensaje').hasError('required') && consultaForm.get('mensaje').touched)">
+          El mensaje es obligatorio
+        </span>
       </mat-form-field>
     </p>
-    <button type="submit">Submit</button>
+    <button type="submit" [disabled]="consultaForm.invalid">Submit</button>
   </form>
 </div>
