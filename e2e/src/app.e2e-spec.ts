@@ -7,8 +7,8 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('Debería mostrar la palabra Registro', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to metrovlc!');
+    expect(page.getParagraphText('app-root h1')).toEqual('Registro');
   });
 });
