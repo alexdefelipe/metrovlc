@@ -3,7 +3,6 @@ import { Component, OnInit, Input  } from '@angular/core';
 import { Estacion } from '../compartido/estacion';
 import { HorariosComponent } from '../horarios/horarios.component';
 import { UsuarioService } from '../services/usuario.service';
-import { EstacionFavoritaService } from '../services/estacion-favorita.service';
 import { EstacionService } from '../services/estacion.service';
 
 
@@ -22,8 +21,7 @@ export class ListadoEstacionesComponent implements OnInit {
   estaciones: Estacion[];
   usuario: Usuario = { nombre: '', password: '', est_favoritas: [-1], id: -1 };
 
-  constructor(private horario: HorariosComponent, private usuarioService: UsuarioService,
-    private estacionFavoritaService: EstacionFavoritaService, private estacionService: EstacionService) {
+  constructor(private horario: HorariosComponent, private usuarioService: UsuarioService, private estacionService: EstacionService) {
     usuario: { nombre: ''; password: ''; est_favoritas: [-1]; id: -1 };
     this.usuarioService.checkLogin().subscribe(usuario => {
       this.usuario = usuario;
@@ -61,9 +59,9 @@ export class ListadoEstacionesComponent implements OnInit {
   favorita(estacion) {
     estacion.fav = !estacion.fav;
     if (estacion.fav) {
-      this.estacionFavoritaService.agregarEstacionFavorita(this.usuario.nombre, estacion.id);
+      this.estacionService.agregarEstacionFavorita(this.usuario.nombre, estacion.id);
     } else {
-      this.estacionFavoritaService.borrarEstacionFavorita(this.usuario.nombre, estacion.id);
+      this.estacionService.borrarEstacionFavorita(this.usuario.nombre, estacion.id);
     }
   }
 }

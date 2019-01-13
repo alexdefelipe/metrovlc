@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { UsuarioService } from "../services/usuario.service"
-import { EstacionFavoritaService } from '../services/estacion-favorita.service';
+import { EstacionService } from '../services/estacion.service';
 import { Usuario } from "../compartido/usuario"
 
 
@@ -14,7 +14,7 @@ import { Usuario } from "../compartido/usuario"
 })
 export class CabeceraComponent implements OnInit {
   usuario: Usuario;
-  constructor(public dialogo: MatDialog, private usuarioService: UsuarioService, private estacionFavoritaService: EstacionFavoritaService) {
+  constructor(public dialogo: MatDialog, private usuarioService: UsuarioService, private estacionService: EstacionService) {
     this.usuarioService.checkLogin().subscribe(usuario => {
       this.usuario = usuario;
     })
@@ -36,7 +36,7 @@ export class CabeceraComponent implements OnInit {
   }
 
   estacionesFavoritas() {
-    this.estacionFavoritaService.cambiarVisibilidad();
+    this.estacionService.cambiarVisibilidadEstacionesFavoritas();
   }
 
 }

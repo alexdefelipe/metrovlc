@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EstacionFavoritaService } from '../services/estacion-favorita.service';
 import { EstacionService } from '../services/estacion.service';
 
 @Component({
@@ -18,8 +17,8 @@ export class HorariosComponent implements OnInit {
   estacion_destino: string = "";
   fecha: string = "";
 
-  constructor(private estacionService: EstacionService, private estacionFavoritaService: EstacionFavoritaService) {
-    estacionFavoritaService.obtenerVisibilidad().subscribe(visibilidad => {
+  constructor(private estacionService: EstacionService) {
+    estacionService.obtenerVisibilidadEstacionesFavoritas().subscribe(visibilidad => {
       this.mostrar_estaciones_favoritas = visibilidad;
       this.mostrar_horarios = false;
       this.mostrar_estaciones = false;
@@ -53,20 +52,24 @@ export class HorariosComponent implements OnInit {
   }
 
   abrirListadoEstaciones(es_origen) {
+    // Si las estaciones favoritas están abiertas y le doy al botón Seleccionar,
+    // escondo las estaciones favoritas
     if (this.mostrar_estaciones_favoritas == true) {
-      this.estacionFavoritaService.cambiarVisibilidad();
+      this.estacionService.cambiarVisibilidadEstacionesFavoritas();
     }
+
     this.mostrar_estaciones = true;
     if (this.mostrar_estaciones) {
       this.mostrar_horarios = false;
     }
-
+    // En ListadoEstacionesComponent es_origen servirá para saber si se está
+    // seleccionando la estación de origen o de destino
     this.es_origen = es_origen;
   }
 
   abrirListadoHorarios() {
     if (this.mostrar_estaciones_favoritas == true) {
-      this.estacionFavoritaService.cambiarVisibilidad();
+      this.estacionService.cambiarVisibilidadEstacionesFavoritas();
     }
     this.mostrar_horarios = true;
     if (this.mostrar_horarios) {

@@ -3,7 +3,6 @@ import { UsuarioService } from '../services/usuario.service';
 import { EstacionService } from '../services/estacion.service';
 import { Estacion } from '../compartido/estacion';
 import { Usuario } from '../compartido/usuario';
-import { EstacionFavoritaService } from '../services/estacion-favorita.service';
 
 
 
@@ -16,7 +15,7 @@ export class EstacionesFavoritasComponent implements OnInit {
   estaciones: Estacion[] = [];
   usuario: Usuario = { nombre: '', password: '', est_favoritas: [-1], id: -1 };
 
-  constructor(private usuarioService: UsuarioService, private estacionService: EstacionService, private estacionFavoritaService: EstacionFavoritaService) {
+  constructor(private usuarioService: UsuarioService, private estacionService: EstacionService) {
     usuario: { nombre: ''; password: ''; est_favoritas: [-1]; id: -1 };
     this.usuarioService.checkLogin().subscribe(usuario => {
       this.usuario = usuario;

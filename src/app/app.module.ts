@@ -22,7 +22,6 @@ import { ContactoComponent } from './contacto/contacto.component';
 // Mis servicios
 import { UsuarioService } from './services/usuario.service';
 import { EstacionService } from './services/estacion.service';
-import { EstacionFavoritaService } from './services/estacion-favorita.service';
 import { ProcesaHTTPMsjService } from './services/procesa-httpmsj.service';
 import { baseURL } from './compartido/baseurl';
 
@@ -74,7 +73,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ReactiveFormsModule,
     MatSlideToggleModule
   ],
-  providers: [{provide: 'BaseURL', useValue: baseURL}, EstacionFavoritaService, UsuarioService, EstacionService, ProcesaHTTPMsjService],
+  providers: [{provide: 'BaseURL', useValue: baseURL}, UsuarioService, EstacionService, ProcesaHTTPMsjService],
   entryComponents: [LoginComponent], // Abrir un componente desde otro
   bootstrap: [AppComponent]
 })
